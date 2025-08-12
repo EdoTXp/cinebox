@@ -1,3 +1,4 @@
+import 'package:cinebox/ui/core/widgets/loader_messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,12 +11,21 @@ class SplashScreen extends ConsumerStatefulWidget {
   ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends ConsumerState<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen>
+    with LoaderAndMessages {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Splash Screen Riverpod'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          showLoader();
+          await Future.delayed(Duration(seconds: 2));
+          hideLoader();
+          showSuccessSnackBar('Sucesso');
+        },
       ),
       body: Center(child: Image.asset(R.ASSETS_IMAGES_BG_LOGIN_PNG)),
     );

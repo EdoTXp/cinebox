@@ -3,7 +3,7 @@ targets:
     sources:
       - lib/**
       - .env
-      - $packages$
+      - $package$
     builders:
       json_serializable:
         options:
