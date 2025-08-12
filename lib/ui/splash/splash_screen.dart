@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/themes/resources.dart';
+
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
@@ -15,7 +17,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       appBar: AppBar(
         title: const Text('Splash Screen Riverpod'),
       ),
-      body: Container(),
+      body: Center(child: Image.asset(R.ASSETS_IMAGES_BG_LOGIN_PNG)),
     );
   }
 }
