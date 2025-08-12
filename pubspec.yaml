@@ -3,7 +3,7 @@ description: "A new Flutter project."
 
 publish_to: "none"
 
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
   sdk: ^3.8.1
@@ -16,7 +16,11 @@ dependencies:
   flutter_riverpod: ^3.0.0-dev.17
   riverpod_annotation: ^3.0.0-dev.17
   envied: ^1.2.0
-
+  retrofit: ^4.7.1
+  logger: ^2.6.1
+  json_annotation: ^4.9.0
+  dio: ^5.9.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -27,6 +31,8 @@ dev_dependencies:
   custom_lint: ^0.8.0
   riverpod_lint: ^3.0.0-dev.17
   envied_generator: ^1.2.0
+  retrofit_generator: ^10.0.0
+  json_serializable: ^6.10.0
 
 flutter:
   uses-material-design: true
