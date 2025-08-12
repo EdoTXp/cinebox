@@ -16,18 +16,25 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Splash Screen Riverpod'),
+      body: Stack(
+        children: [
+          Image.asset(
+            R.ASSETS_IMAGES_BG_LOGIN_PNG,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            constraints: BoxConstraints.expand(),
+            color: Colors.black.withAlpha(170),
+          ),
+          Center(
+            child: Image.asset(
+              R.ASSETS_IMAGES_LOGO_PNG,
+            ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          showLoader();
-          await Future.delayed(Duration(seconds: 2));
-          hideLoader();
-          showSuccessSnackBar('Sucesso');
-        },
-      ),
-      body: Center(child: Image.asset(R.ASSETS_IMAGES_BG_LOGIN_PNG)),
     );
   }
 }
