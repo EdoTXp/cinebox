@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class MoviesBox extends StatelessWidget {
   final String title;
+  final bool verticalScroll;
 
   const MoviesBox({
     super.key,
     required this.title,
+    this.verticalScroll = false,
   });
 
   @override
@@ -24,20 +26,38 @@ class MoviesBox extends StatelessWidget {
             textAlign: TextAlign.start,
           ),
         ),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          height: 253,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.only(left: 20),
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(right: 16),
-                child: MovieCard(),
-              );
-            },
+        Visibility(
+          visible: !verticalScroll,
+          replacement: Center(
+            child: Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              runAlignment: WrapAlignment.center,
+              children: [
+                MovieCard(),
+                MovieCard(),
+                MovieCard(),
+                MovieCard(),
+                MovieCard(),
+                MovieCard(),
+              ],
+            ),
+          ),
+          child: SizedBox(
+            width: MediaQuery.sizeOf(context).width,
+            height: 253,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.only(left: 20),
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(right: 16),
+                  child: MovieCard(),
+                );
+              },
+            ),
           ),
         ),
       ],
