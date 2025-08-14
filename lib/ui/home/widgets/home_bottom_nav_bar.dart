@@ -48,8 +48,8 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
           items: [
             HomeBottomNavBarItem(
               label: 'Filmes',
-              activeAsset: R.ASSETS_IMAGES_ICON_PROFILE_NAV_BAR_PNG,
-              inactiveAsset: R.ASSETS_IMAGES_ICON_PROFILE_NAV_BAR_INATIVO_PNG,
+              activeAsset: R.ASSETS_IMAGES_ICON_FILME_NAV_BAR_PNG,
+              inactiveAsset: R.ASSETS_IMAGES_ICON_FILME_NAV_BAR_INATIVO_PNG,
             ),
             HomeBottomNavBarItem(
               label: 'Favoritos',

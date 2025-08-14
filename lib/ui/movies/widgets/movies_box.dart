@@ -33,7 +33,10 @@ class MoviesBox extends StatelessWidget {
             padding: EdgeInsets.only(left: 20),
             itemCount: 10,
             itemBuilder: (context, index) {
-              return MovieCard();
+              return Container(
+                margin: EdgeInsets.only(right: 16),
+                child: MovieCard(),
+              );
             },
           ),
         ),
