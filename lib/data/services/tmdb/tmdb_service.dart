@@ -15,25 +15,25 @@ abstract class TmdbService {
     @Query('language') String language = 'pt-BR',
   });
 
-  @GET('/movies/popular')
+  @GET('/movie/popular')
   Future<MovieResponse> getPopularMovies({
     @Query('language') String language = 'pt-BR',
     @Query('page') int page = 1,
   });
 
-  @GET('/movies/top_rated')
+  @GET('/movie/top_rated')
   Future<MovieResponse> getTopRatedMovies({
     @Query('language') String language = 'pt-BR',
     @Query('page') int page = 1,
   });
 
-  @GET('/movies/now_playing')
+  @GET('/movie/now_playing')
   Future<MovieResponse> getNowPlayingMovies({
     @Query('language') String language = 'pt-BR',
     @Query('page') int page = 1,
   });
 
-  @GET('/movies/upcoming')
+  @GET('/movie/upcoming')
   Future<MovieResponse> getUpComingMovies({
     @Query('language') String language = 'pt-BR',
     @Query('page') int page = 1,
