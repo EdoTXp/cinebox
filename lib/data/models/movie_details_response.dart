@@ -12,7 +12,7 @@ class MovieDetailsResponse {
   final int voteCount;
   final Images images;
   final Credits credits;
-  final List<MovieDetailGenreResponse> genres;
+  final List<MovieDetailsGenreResponse> genres;
   final Videos videos;
 
   MovieDetailsResponse({
@@ -65,6 +65,7 @@ class Images {
 class CastResponse {
   final String name;
   final String character;
+  @JsonKey(defaultValue: '')
   final String profilePath;
 
   CastResponse({
@@ -80,19 +81,19 @@ class CastResponse {
 }
 
 @JsonSerializable()
-class MovieDetailGenreResponse {
+class MovieDetailsGenreResponse {
   final int id;
   final String name;
 
-  MovieDetailGenreResponse({
+  MovieDetailsGenreResponse({
     required this.id,
     required this.name,
   });
 
-  factory MovieDetailGenreResponse.fromJson(Map<String, dynamic> json) =>
-      _$MovieDetailGenreResponseFromJson(json);
+  factory MovieDetailsGenreResponse.fromJson(Map<String, dynamic> json) =>
+      _$MovieDetailsGenreResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MovieDetailGenreResponseToJson(this);
+  Map<String, dynamic> toJson() => _$MovieDetailsGenreResponseToJson(this);
 }
 
 @JsonSerializable()

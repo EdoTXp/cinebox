@@ -18,7 +18,7 @@ MovieDetailsResponse _$MovieDetailsResponseFromJson(
   images: Images.fromJson(json['images'] as Map<String, dynamic>),
   credits: Credits.fromJson(json['credits'] as Map<String, dynamic>),
   genres: (json['genres'] as List<dynamic>)
-      .map((e) => MovieDetailGenreResponse.fromJson(e as Map<String, dynamic>))
+      .map((e) => MovieDetailsGenreResponse.fromJson(e as Map<String, dynamic>))
       .toList(),
   videos: Videos.fromJson(json['videos'] as Map<String, dynamic>),
 );
@@ -63,7 +63,7 @@ Map<String, dynamic> _$ImagesToJson(Images instance) => <String, dynamic>{
 CastResponse _$CastResponseFromJson(Map<String, dynamic> json) => CastResponse(
   name: json['name'] as String,
   character: json['character'] as String,
-  profilePath: json['profile_path'] as String,
+  profilePath: json['profile_path'] as String? ?? '',
 );
 
 Map<String, dynamic> _$CastResponseToJson(CastResponse instance) =>
@@ -73,15 +73,15 @@ Map<String, dynamic> _$CastResponseToJson(CastResponse instance) =>
       'profile_path': instance.profilePath,
     };
 
-MovieDetailGenreResponse _$MovieDetailGenreResponseFromJson(
+MovieDetailsGenreResponse _$MovieDetailsGenreResponseFromJson(
   Map<String, dynamic> json,
-) => MovieDetailGenreResponse(
+) => MovieDetailsGenreResponse(
   id: (json['id'] as num).toInt(),
   name: json['name'] as String,
 );
 
-Map<String, dynamic> _$MovieDetailGenreResponseToJson(
-  MovieDetailGenreResponse instance,
+Map<String, dynamic> _$MovieDetailsGenreResponseToJson(
+  MovieDetailsGenreResponse instance,
 ) => <String, dynamic>{'id': instance.id, 'name': instance.name};
 
 MovieDetailsBackdropResponse _$MovieDetailsBackdropResponseFromJson(
