@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:cinebox/ui/core/themes/resources.dart';
+import 'package:cinebox/ui/movies/movies_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,6 +13,32 @@ class MoviesAppbar extends ConsumerStatefulWidget {
 }
 
 class _MoviesAppbarState extends ConsumerState<MoviesAppbar> {
+  Timer? _debounce;
+  final _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    /* _searchController.addListener(() {
+      _onSearchChanged(_searchController.text);
+    });*/
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  void _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+
+    _debounce = Timer(Duration(milliseconds: 500), () {
+      ref.read(moviesViewModelProvider.notifier).fetchMoviesBySearch(query);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -31,6 +60,8 @@ class _MoviesAppbarState extends ConsumerState<MoviesAppbar> {
         title: SizedBox(
           height: 36,
           child: TextFormField(
+            controller: _searchController,
+            onChanged: _onSearchChanged,
             style: TextStyle(
               color: Colors.grey[600],
               fontWeight: FontWeight.w400,

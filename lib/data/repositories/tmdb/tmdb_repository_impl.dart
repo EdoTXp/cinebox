@@ -124,4 +124,18 @@ class TmdbRepositoryImpl implements TmdbRepository {
       );
     }
   }
+
+  @override
+  Future<Result<List<Movie>>> searchMovies({required String query}) async {
+    try {
+      final data = await _tmdbService.searchMovies(query: query);
+
+      return Success(MovieMappers.mapToMovie(data));
+    } on DioException catch (e, s) {
+      log('Error to get Movies by Name', error: e, stackTrace: s);
+      return Failure(
+        DataException(message: 'Error to get Movies by Name'),
+      );
+    }
+  }
 }
