@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:cinebox/core/result/result.dart';
+import 'package:cinebox/data/exceptions/data_exception.dart';
+import 'package:cinebox/data/mappers/movie_mappers.dart';
 import 'package:cinebox/data/services/tmdb/tmdb_service.dart';
 
 import 'package:cinebox/domain/models/movie.dart';
+import 'package:dio/dio.dart';
 
 import './tmdb_repository.dart';
 
@@ -16,14 +21,70 @@ class TmdbRepositoryImpl implements TmdbRepository {
     String language = 'pt-BR',
     int page = 1,
   }) async {
-    final moviesData = await _tmdbService.getPopularMovies(
-      language: language,
-      page: page,
-    );
+    try {
+      final moviesData = await _tmdbService.getPopularMovies(
+        language: language,
+        page: page,
+      );
 
-    //! Implements Real Logic
-    return Success(
-      [] as List<Movie>,
-    );
+      return Success(MovieMappers.mapToMovie(moviesData));
+    } on DioException catch (e, s) {
+      log('Error on get Popular Movies', error: e, stackTrace: s);
+      return Failure(DataException(message: 'Error on get Popular Movies'));
+    }
+  }
+
+  @override
+  Future<Result<List<Movie>>> getNowPlayingMovies({
+    String language = 'pt-BR',
+    int page = 1,
+  }) async {
+    try {
+      final moviesData = await _tmdbService.getNowPlayingMovies(
+        language: language,
+        page: page,
+      );
+
+      return Success(MovieMappers.mapToMovie(moviesData));
+    } on DioException catch (e, s) {
+      log('Error on get Now Playing Movies', error: e, stackTrace: s);
+      return Failure(DataException(message: 'Error on get Now Playing Movies'));
+    }
+  }
+
+  @override
+  Future<Result<List<Movie>>> getTopRatedMovies({
+    String language = 'pt-BR',
+    int page = 1,
+  }) async {
+    try {
+      final moviesData = await _tmdbService.getTopRatedMovies(
+        language: language,
+        page: page,
+      );
+
+      return Success(MovieMappers.mapToMovie(moviesData));
+    } on DioException catch (e, s) {
+      log('Error on get Top Rated Movies', error: e, stackTrace: s);
+      return Failure(DataException(message: 'Error on get Top Rated Movies'));
+    }
+  }
+
+  @override
+  Future<Result<List<Movie>>> getUpComingMovies({
+    String language = 'pt-BR',
+    int page = 1,
+  }) async {
+    try {
+      final moviesData = await _tmdbService.getUpComingMovies(
+        language: language,
+        page: page,
+      );
+
+      return Success(MovieMappers.mapToMovie(moviesData));
+    } on DioException catch (e, s) {
+      log('Error on get Up Coming Movies', error: e, stackTrace: s);
+      return Failure(DataException(message: 'Error on get Up Coming Movies'));
+    }
   }
 }
