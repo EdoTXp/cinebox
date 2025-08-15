@@ -1,5 +1,7 @@
 import 'package:cinebox/data/repositories/auth/auth_repository.dart';
 import 'package:cinebox/data/repositories/auth/auth_repository_impl.dart';
+import 'package:cinebox/data/repositories/movies/movies_repository.dart';
+import 'package:cinebox/data/repositories/movies/movies_repository_impl.dart';
 import 'package:cinebox/data/repositories/tmdb/tmdb_repository.dart';
 import 'package:cinebox/data/repositories/tmdb/tmdb_repository_impl.dart';
 import 'package:cinebox/data/services/services_providers.dart';
@@ -20,5 +22,12 @@ AuthRepository authRepository(Ref ref) {
 TmdbRepository tmdbRepository(Ref ref) {
   return TmdbRepositoryImpl(
     tmdbService: ref.read(tmdbServiceProvider),
+  );
+}
+
+@riverpod
+MoviesRepository moviesRepository(Ref ref) {
+  return MoviesRepositoryImpl(
+    moviesService: ref.read(moviesServiceProvider),
   );
 }
