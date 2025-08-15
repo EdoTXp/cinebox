@@ -108,4 +108,20 @@ class TmdbRepositoryImpl implements TmdbRepository {
       return Failure(DataException(message: 'Error to get Genres'));
     }
   }
+
+  @override
+  Future<Result<List<Movie>>> getMoviesByGenres({required int genreId}) async {
+    try {
+      final data = await _tmdbService.discoverMovies(
+        withGenres: genreId.toString(),
+      );
+
+      return Success(MovieMappers.mapToMovie(data));
+    } on DioException catch (e, s) {
+      log('Error to get Movies by Genre', error: e, stackTrace: s);
+      return Failure(
+        DataException(message: 'Error to get Movies by Genre'),
+      );
+    }
+  }
 }
