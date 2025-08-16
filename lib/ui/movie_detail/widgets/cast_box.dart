@@ -1,4 +1,6 @@
 import 'package:cinebox/ui/core/themes/colors.dart';
+import 'package:cinebox/ui/core/themes/text_styles.dart';
+import 'package:cinebox/ui/movie_detail/widgets/actor_card.dart';
 import 'package:flutter/material.dart';
 
 class CastBox extends StatelessWidget {
@@ -14,7 +16,27 @@ class CastBox extends StatelessWidget {
         dense: true,
         tilePadding: EdgeInsets.only(left: 0, right: 0),
         childrenPadding: EdgeInsets.symmetric(vertical: 10),
-        title: Text('data'),
+        title: Text(
+          'Elenco',
+          style: AppTextStyles.regularSmall,
+        ),
+        children: [
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return ActorCard(
+                  imageUrl:
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS2AyNHcH33V9tTNethXhcSJzQgwm_7eU0Cw&s',
+                  name: 'Joaquin',
+                  character: 'Coringa',
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
