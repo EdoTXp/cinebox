@@ -17,7 +17,7 @@ class MovieCard extends ConsumerStatefulWidget {
   final VoidCallback? onFavoriteTap;
 
   const MovieCard({
-    super.key,
+    required super.key,
     required this.id,
     required this.title,
     required this.year,
