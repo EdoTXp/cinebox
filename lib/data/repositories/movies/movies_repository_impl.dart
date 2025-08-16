@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cinebox/core/result/result.dart';
 import 'package:cinebox/data/exceptions/data_exception.dart';
+import 'package:cinebox/data/models/save_favorite_movie.dart';
 import 'package:cinebox/data/services/movies/movies_service.dart';
 
 import 'package:cinebox/domain/models/favorite_movie.dart';
@@ -34,6 +35,36 @@ class MoviesRepositoryImpl implements MoviesRepository {
     } on DioException catch (e, s) {
       log('Error on fetch favorites movies', error: e, stackTrace: s);
       return Failure(DataException(message: 'Error on fetch favorites movies'));
+    }
+  }
+
+  @override
+  Future<Result<Unit>> saveFavoriteMovie(FavoriteMovie favoriteMovie) async {
+    try {
+      await _moviesService.saveFavoriteMovie(
+        SaveFavoriteMovie(
+          movieId: favoriteMovie.id,
+          posterUrl: favoriteMovie.posterPath,
+          title: favoriteMovie.title,
+          year: favoriteMovie.year,
+        ),
+      );
+      
+      return successOfUnit();
+    } on DioException catch (e, s) {
+      log('Error on save favorite movie', error: e, stackTrace: s);
+      return Failure(DataException(message: 'Error on save favorite movie'));
+    }
+  }
+
+  @override
+  Future<Result<Unit>> deleteFavoriteMovie(int movieId) async {
+    try {
+      await _moviesService.deleteFavoriteMovie(movieId);
+      return successOfUnit();
+    } on DioException catch (e, s) {
+      log('Error on delete favorite movie', error: e, stackTrace: s);
+      return Failure(DataException(message: 'Error on delete favorite movie'));
     }
   }
 }
