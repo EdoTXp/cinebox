@@ -225,5 +225,46 @@ final class MoviesServiceProvider
 
 String _$moviesServiceHash() => r'e648edbbe040d62aff98904732e727d3cf49b9fb';
 
+@ProviderFor(userService)
+const userServiceProvider = UserServiceProvider._();
+
+final class UserServiceProvider
+    extends $FunctionalProvider<UserService, UserService, UserService>
+    with $Provider<UserService> {
+  const UserServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<UserService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  UserService create(Ref ref) {
+    return userService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UserService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UserService>(value),
+    );
+  }
+}
+
+String _$userServiceHash() => r'fb564477060c0fab915c58d81375184be46435b0';
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

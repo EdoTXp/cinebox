@@ -1,6 +1,7 @@
 import 'package:cinebox/ui/favorites/favorite_screen.dart';
 import 'package:cinebox/ui/home/widgets/home_bottom_nav_bar.dart';
 import 'package:cinebox/ui/movies/movies_screen.dart';
+import 'package:cinebox/ui/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,6 +27,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
         child: switch (_currentIndex) {
           1 => FavoriteScreen(key: ValueKey(1)),
+          2 => ProfileScreen(key: ValueKey(2)),
           0 || _ => MoviesScreen(key: ValueKey(0)),
         },
       ),
